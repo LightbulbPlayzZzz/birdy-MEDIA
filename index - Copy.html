@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>birdy MEDIA</title>
+
+<style>
+body {
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#eef7ff;
+}
+
+header {
+    background:#2196f3;
+    color:white;
+    padding:20px;
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+}
+
+nav {
+    background:white;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    padding:15px;
+}
+
+nav button {
+    border:none;
+    background:#2196f3;
+    color:white;
+    padding:10px 20px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+.container {
+    max-width:700px;
+    margin:auto;
+    padding:20px;
+}
+
+.profile {
+    background:white;
+    padding:20px;
+    border-radius:15px;
+    display:flex;
+    gap:20px;
+}
+
+.profile img {
+    width:80px;
+    height:80px;
+    border-radius:50%;
+}
+
+.card {
+    background:white;
+    margin-top:20px;
+    padding:20px;
+    border-radius:15px;
+}
+
+.post-img {
+    width:100%;
+    border-radius:10px;
+}
+
+button {
+    cursor:pointer;
+}
+
+.like {
+    background:#ff4081;
+    color:white;
+    border:none;
+    padding:8px;
+    border-radius:10px;
+}
+
+.comment {
+    background:#eee;
+    padding:10px;
+    border-radius:10px;
+    margin-top:10px;
+}
+
+.message {
+    background:#d9fdd3;
+    padding:10px;
+    border-radius:10px;
+    margin:5px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+🐦 birdy MEDIA
+</header>
+
+
+<nav>
+<button>🏠 Home</button>
+<button>🔍 Explore</button>
+<button>➕ Create</button>
+<button>💬 Messages</button>
+<button>👤 Profile</button>
+</nav>
+
+
+<div class="container">
+
+
+<div class="profile">
+
+<img src="https://i.imgur.com/4ZQZ4ZQ.png">
+
+<div>
+<h2>Birdy User</h2>
+<p>Welcome to birdy MEDIA!</p>
+<p>Sharing photos, videos and updates 🐦</p>
+</div>
+
+</div>
+
+
+
+<div class="card">
+
+<h2>📰 Activity Feed</h2>
+
+<h3>🐦 Birdy User</h3>
+
+<p>
+Just joined birdy MEDIA!
+</p>
+
+<img class="post-img" src="https://picsum.photos/600/300">
+
+
+<br><br>
+
+<button class="like" onclick="like()">❤️ Like</button>
+
+<p id="likes">
+0 likes
+</p>
+
+
+<input id="commentBox" placeholder="Write a comment">
+
+<button onclick="comment()">
+Comment
+</button>
+
+
+<div id="comments"></div>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>📸 Media Sharing</h2>
+
+<p>
+Upload your photos and videos:
+</p>
+
+<input type="file">
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>💬 Messages</h2>
+
+<div class="message">
+Friend: Hello! Welcome to birdy MEDIA 🐦
+</div>
+
+<div class="message">
+You: Thanks!
+</div>
+
+
+<input placeholder="Write message">
+
+<button>
+Send
+</button>
+
+
+</div>
+
+
+
+
+<div class="card">
+
+<h2>🏘️ Communities</h2>
+
+<p>
+Join groups and discuss topics!
+</p>
+
+<button>
+Create Community
+</button>
+
+</div>
+
+
+
+</div>
+
+
+
+<script>
+
+let likes = 0;
+
+function like(){
+
+likes++;
+
+document.getElementById("likes").innerHTML =
+likes + " likes";
+
+}
+
+
+function comment(){
+
+let text =
+document.getElementById("commentBox").value;
+
+
+if(text!=""){
+
+let div=document.createElement("div");
+
+div.className="comment";
+
+div.innerHTML=text;
+
+
+document.getElementById("comments")
+.appendChild(div);
+
+
+document.getElementById("commentBox").value="";
+
+}
+
+}
+
+</script>
+
+
+</body>
+</html>
