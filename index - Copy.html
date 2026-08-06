@@ -7,203 +7,127 @@
 <title>birdy MEDIA</title>
 
 <style>
-body {
+
+body{
     margin:0;
-    font-family:Arial, sans-serif;
-    background:#eef7ff;
+    font-family:Arial;
+    background:#f2f2f2;
 }
 
-header {
-    background:#2196f3;
+header{
+    background:#222;
     color:white;
     padding:20px;
     text-align:center;
     font-size:30px;
-    font-weight:bold;
 }
 
-nav {
+nav{
     background:white;
-    display:flex;
-    justify-content:center;
-    gap:20px;
     padding:15px;
+    text-align:center;
 }
 
-nav button {
-    border:none;
-    background:#2196f3;
-    color:white;
-    padding:10px 20px;
-    border-radius:20px;
-    cursor:pointer;
-}
-
-.container {
-    max-width:700px;
-    margin:auto;
-    padding:20px;
-}
-
-.profile {
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    display:flex;
-    gap:20px;
-}
-
-.profile img {
-    width:80px;
-    height:80px;
-    border-radius:50%;
-}
-
-.card {
-    background:white;
-    margin-top:20px;
-    padding:20px;
-    border-radius:15px;
-}
-
-.post-img {
-    width:100%;
-    border-radius:10px;
-}
-
-button {
-    cursor:pointer;
-}
-
-.like {
-    background:#ff4081;
-    color:white;
-    border:none;
-    padding:8px;
-    border-radius:10px;
-}
-
-.comment {
-    background:#eee;
+button{
     padding:10px;
-    border-radius:10px;
-    margin-top:10px;
-}
-
-.message {
-    background:#d9fdd3;
-    padding:10px;
-    border-radius:10px;
+    border:none;
+    background:#333;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
     margin:5px;
 }
+
+.container{
+    width:700px;
+    max-width:90%;
+    margin:auto;
+}
+
+
+.card{
+    background:white;
+    padding:20px;
+    margin-top:20px;
+    border-radius:15px;
+}
+
+
+input, textarea{
+    width:90%;
+    padding:10px;
+    margin:5px;
+}
+
+
+img{
+    max-width:100%;
+    border-radius:10px;
+}
+
+
+.like{
+    background:#1877f2;
+}
+
+
+.disabled{
+    background:gray;
+}
+
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <header>
-🐦 birdy MEDIA
+birdy MEDIA
 </header>
 
 
 <nav>
-<button>🏠 Home</button>
-<button>🔍 Explore</button>
-<button>➕ Create</button>
-<button>💬 Messages</button>
-<button>👤 Profile</button>
+<button onclick="showAccount()">Account</button>
+<button onclick="showFeed()">Feed</button>
+<button onclick="showCreate()">Create Post</button>
 </nav>
+
 
 
 <div class="container">
 
 
-<div class="profile">
+<div class="card" id="account">
 
-<img src="https://i.imgur.com/4ZQZ4ZQ.png">
+<h2>Create Account</h2>
 
-<div>
-<h2>Birdy User</h2>
-<p>Welcome to birdy MEDIA!</p>
-<p>Sharing photos, videos and updates 🐦</p>
-</div>
+<input id="username" placeholder="Username">
 
-</div>
-
-
-
-<div class="card">
-
-<h2>📰 Activity Feed</h2>
-
-<h3>🐦 Birdy User</h3>
-
-<p>
-Just joined birdy MEDIA!
-</p>
-
-<img class="post-img" src="https://picsum.photos/600/300">
-
-
-<br><br>
-
-<button class="like" onclick="like()">❤️ Like</button>
-
-<p id="likes">
-0 likes
-</p>
-
-
-<input id="commentBox" placeholder="Write a comment">
-
-<button onclick="comment()">
-Comment
+<button onclick="createAccount()">
+Create
 </button>
 
-
-<div id="comments"></div>
-
+<p id="profile"></p>
 
 </div>
 
 
 
 
-<div class="card">
+<div class="card" id="create" style="display:none">
 
-<h2>📸 Media Sharing</h2>
+<h2>Create Meme Post</h2>
 
-<p>
-Upload your photos and videos:
-</p>
+<textarea id="postText" placeholder="Write a meme caption"></textarea>
 
-<input type="file">
+<input id="image" placeholder="Meme image URL">
 
 
-</div>
-
-
-
-
-<div class="card">
-
-<h2>💬 Messages</h2>
-
-<div class="message">
-Friend: Hello! Welcome to birdy MEDIA 🐦
-</div>
-
-<div class="message">
-You: Thanks!
-</div>
-
-
-<input placeholder="Write message">
-
-<button>
-Send
+<button onclick="createPost()">
+Post
 </button>
 
 
@@ -212,20 +136,47 @@ Send
 
 
 
+<div id="feed">
+
+
 <div class="card">
 
-<h2>🏘️ Communities</h2>
+<h3>Funny Bird</h3>
 
-<p>
-Join groups and discuss topics!
-</p>
+<p>When you open your homework and realize it is due tomorrow.</p>
 
-<button>
-Create Community
+<img src="https://picsum.photos/600/400">
+
+
+<button class="like" onclick="likePost(this)">
+Like
 </button>
+
+<p>Likes: <span>0</span></p>
 
 </div>
 
+
+
+<div class="card">
+
+<h3>Meme Master</h3>
+
+<p>Me trying to fix my code after one mistake.</p>
+
+<img src="https://picsum.photos/601/400">
+
+
+<button class="like" onclick="likePost(this)">
+Like
+</button>
+
+<p>Likes: <span>0</span></p>
+
+</div>
+
+
+</div>
 
 
 </div>
@@ -234,42 +185,133 @@ Create Community
 
 <script>
 
-let likes = 0;
 
-function like(){
+let user =
+localStorage.getItem("birdyUser");
 
-likes++;
 
-document.getElementById("likes").innerHTML =
-likes + " likes";
+if(user){
+
+document.getElementById("profile").innerHTML =
+"Logged in as: " + user;
 
 }
 
 
-function comment(){
+
+function createAccount(){
+
+let name =
+document.getElementById("username").value;
+
+
+if(name){
+
+localStorage.setItem(
+"birdyUser",
+name
+);
+
+
+document.getElementById("profile").innerHTML =
+"Logged in as: " + name;
+
+}
+
+}
+
+
+
+function likePost(button){
+
+if(button.classList.contains("disabled")){
+return;
+}
+
+
+let number =
+button.parentElement.querySelector("span");
+
+
+number.innerHTML =
+Number(number.innerHTML)+1;
+
+
+button.classList.add("disabled");
+
+button.innerHTML="Liked";
+
+}
+
+
+
+function createPost(){
 
 let text =
-document.getElementById("commentBox").value;
+document.getElementById("postText").value;
 
 
-if(text!=""){
-
-let div=document.createElement("div");
-
-div.className="comment";
-
-div.innerHTML=text;
+let image =
+document.getElementById("image").value;
 
 
-document.getElementById("comments")
-.appendChild(div);
+let name =
+localStorage.getItem("birdyUser") || "Unknown User";
 
 
-document.getElementById("commentBox").value="";
+let post =
+document.createElement("div");
+
+
+post.className="card";
+
+
+post.innerHTML=
+
+`
+<h3>${name}</h3>
+<p>${text}</p>
+<img src="${image}">
+<br>
+<button class="like" onclick="likePost(this)">
+Like
+</button>
+<p>Likes: <span>0</span></p>
+`;
+
+
+document.getElementById("feed")
+.prepend(post);
+
 
 }
 
+
+
+function showAccount(){
+
+document.getElementById("account").style.display="block";
+document.getElementById("create").style.display="none";
+
 }
+
+
+function showCreate(){
+
+document.getElementById("account").style.display="none";
+document.getElementById("create").style.display="block";
+
+}
+
+
+function showFeed(){
+
+document.getElementById("account").style.display="none";
+document.getElementById("create").style.display="none";
+
+}
+
+
 
 </script>
 
